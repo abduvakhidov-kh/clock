@@ -1,26 +1,25 @@
-"use strict"
+(function getTime() {
+    "use strict";
 
-function getTime () {
-    var date = new Date();
-    var h = date.getHours();
-    var m = date.getMinutes();
-    var s = date.getSeconds();
-    var session = "AM"; 
+    const date = new Date();
+    let h = date.getHours();
+    let m = date.getMinutes();
+    let s = date.getSeconds();
+    let session = "AM"; 
 
-    if (h==0) {
-        h=12;
-    };
-    if (h>12) {
-        h=h-12;
-        session = "PM"
-    };
-    h = (h < 10) ? '0' + h: h;
-    m = (m < 10) ? '0' + m: m;
-    s = (s < 10) ? '0' + s: s;
+    if (h === 0) {
+        h = 12;
+    } else if (h > 12) {
+        h -= 12;
+        session = "PM";
+    }
 
-    var time = h + ":" + m + ":" + s + " "  + session;
-    $('#our_time').text(time);
+    h = (h < 10) ? '0' + h : h;
+    m = (m < 10) ? '0' + m : m;
+    s = (s < 10) ? '0' + s : s;
+
+    const time = `${h}:${m}:${s} ${session}`;
+    let clock = document.querySelector('.clock');
+    clock.innerHTML = time;
     setTimeout(getTime, 1000);
-}
-
-getTime();
+})();
